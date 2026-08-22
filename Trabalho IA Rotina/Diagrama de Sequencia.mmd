@@ -1,0 +1,41 @@
+sequenceDiagram
+    actor U as Usuário
+    participant S as Sistema
+    participant IA as Inteligência Artificial
+    participant BD as Banco de Dados
+
+    U->>S: Solicita geração de rotina
+    S-->>U: Solicita informações
+    U->>S: Informa atividades, compromissos,<br/>horários e prioridades
+
+    S->>S: Valida informações
+
+    S->>IA: Envia informações
+    IA->>IA: Analisa informações
+    IA->>IA: Organiza rotina
+    IA-->>S: Retorna rotina personalizada
+
+    S-->>U: Exibe rotina
+
+    alt Usuário aceita a rotina
+        U->>S: Confirma rotina
+        S->>BD: Salva rotina
+        BD-->>S: Confirma salvamento
+        S-->>U: Rotina salva com sucesso
+
+    else Usuário deseja alterar
+        U->>S: Solicita alteração
+        S-->>U: Solicita novas informações
+        U->>S: Informa alterações
+
+        S->>IA: Envia alterações
+        IA->>IA: Reprocessa rotina
+        IA-->>S: Retorna nova rotina
+
+        S-->>U: Exibe nova rotina
+        U->>S: Confirma nova rotina
+
+        S->>BD: Salva nova rotina
+        BD-->>S: Confirma salvamento
+        S-->>U: Rotina salva com sucesso
+    end

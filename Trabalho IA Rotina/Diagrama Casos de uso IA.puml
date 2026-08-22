@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+actor "Usuário" as Usuario
+actor "Serviço de Inteligência Artificial" as IA
+
+rectangle "IA para Rotinas" {
+
+    usecase "Gerar rotina personalizada" as Gerar
+    usecase "Visualizar rotina" as Visualizar
+    usecase "Alterar rotina" as Alterar
+    usecase "Salvar rotina" as Salvar
+    usecase "Consultar histórico" as Historico
+}
+
+Usuario --> Gerar
+Usuario --> Visualizar
+Usuario --> Alterar
+Usuario --> Salvar
+Usuario --> Historico
+
+Gerar --> IA
+
+Alterar --> IA
+
+@enduml
