@@ -1,4 +1,4 @@
-# IA para Rotinas
+# NextIA
 
 Projeto de faculdade sobre uma IA que cria uma rotina personalizada para o usuário, de acordo com suas atividades, horários e prioridades.
 
