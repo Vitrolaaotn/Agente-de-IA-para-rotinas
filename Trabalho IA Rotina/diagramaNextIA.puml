@@ -7,20 +7,15 @@ actor "Serviço de Inteligência Artificial" as IA
 rectangle "IA para Rotinas" {
 
     usecase "Gerar rotina personalizada" as Gerar
-    usecase "Visualizar rotina" as Visualizar
     usecase "Alterar rotina" as Alterar
-    usecase "Salvar rotina" as Salvar
-    usecase "Consultar histórico" as Historico
+    usecase "Gerar rotina novamente" as Regerar
 }
 
 Usuario --> Gerar
-Usuario --> Visualizar
 Usuario --> Alterar
-Usuario --> Salvar
-Usuario --> Historico
+Usuario --> Regerar
 
 Gerar --> IA
-
-Alterar --> IA
+Regerar --> IA
 
 @enduml
