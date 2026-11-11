@@ -8,7 +8,6 @@ Projeto de faculdade sobre uma IA que cria uma rotina personalizada para o usuá
 - Caio Henrique
 - Gian Li
 - João Preite
-- Samuel
 
 ## Sobre o Projeto
 
