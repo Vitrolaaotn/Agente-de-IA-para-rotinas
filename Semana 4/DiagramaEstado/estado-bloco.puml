@@ -1,0 +1,13 @@
+@startuml
+title Estados do BlocoRotina
+hide empty description
+
+skinparam state {
+  BackgroundColor #EEEDFE
+  BorderColor #534AB7
+}
+
+[*] --> Pendente : criado com a rotina
+Pendente --> Concluido : marcarConcluido() (UC09)
+Concluido --> Pendente : desmarcar
+@enduml

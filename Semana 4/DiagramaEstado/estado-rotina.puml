@@ -1,0 +1,52 @@
+@startuml
+title Estados da Rotina e da geração (UC06)
+hide empty description
+
+skinparam state {
+  BackgroundColor<<proc>> #F1EFE8
+  BorderColor<<proc>> #5F5E5A
+  BackgroundColor<<salva>> #E1F5EE
+  BorderColor<<salva>> #0F6E56
+  BackgroundColor<<erro>> #FCEBEB
+  BorderColor<<erro>> #A32D2D
+}
+
+state "Solicitada" as Solicitada <<proc>>
+state "Reunindo dados" as Reunindo <<proc>>
+state "Aguardando IA" as AguardandoIA <<proc>>
+state "Interpretando" as Interpretando <<proc>>
+state "Validando" as Validando <<proc>>
+state "Nova tentativa" as NovaTentativa <<proc>>
+state "GERADA" as Gerada <<salva>>
+state "AJUSTADA" as Ajustada <<salva>>
+state "ARQUIVADA" as Arquivada <<salva>>
+state "Falha" as Falha <<erro>>
+
+[*] --> Solicitada : usuário solicita rotina
+Solicitada --> Reunindo : período válido
+Reunindo --> AguardandoIA : envia prompt à IA
+AguardandoIA --> Interpretando : IA devolve proposta
+AguardandoIA --> Falha : IA indisponível (E1)
+Interpretando --> Validando : resposta interpretada
+Interpretando --> Falha : resposta inválida (E2)
+Validando --> Gerada : sem conflitos
+Validando --> NovaTentativa : conflito [tentativas < 2]
+NovaTentativa --> AguardandoIA : reenvia informando o conflito
+Validando --> Falha : conflitos persistem (E2)
+
+Gerada --> Ajustada : usuário ajusta (UC08)
+Gerada --> Arquivada : arquivar
+Ajustada --> Arquivada : arquivar
+
+Arquivada --> [*]
+Falha --> [*]
+
+note right of Falha
+  Nada é salvo.
+  O usuário é informado.
+end note
+
+note bottom of Ajustada
+  Cada ajuste é revalidado (UC10).
+end note
+@enduml

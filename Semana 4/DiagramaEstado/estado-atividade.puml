@@ -1,0 +1,15 @@
+@startuml
+title Estados da Atividade
+hide empty description
+
+skinparam state {
+  BackgroundColor #E1F5EE
+  BorderColor #0F6E56
+}
+
+[*] --> PENDENTE : cadastrar (UC02)
+PENDENTE --> EM_ANDAMENTO : 1º bloco concluído
+EM_ANDAMENTO --> CONCLUIDA : todos os blocos concluídos
+CONCLUIDA --> EM_ANDAMENTO : bloco desmarcado
+PENDENTE --> [*] : remover (UC03)
+@enduml
