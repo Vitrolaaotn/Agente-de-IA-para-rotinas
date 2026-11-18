@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    actor U as Usuário
+    participant S as Sistema
+    participant IA as IA
+    U->>S: Solicita geração de rotina (atividades e horários)
+    S->>IA: Envia dados do usuário
+    IA-->>S: Retorna proposta de rotina
+    S->>S: Valida se há horários repetidos
+    S-->>U: Exibe a rotina gerada
+    alt Usuário aceita
+        U->>S: Confirma rotina
+        S->>S: Salva a rotina no sistema
+        S-->>U: Rotina salva com sucesso!
+    else Usuário quer alterar
+        U->>S: Pede alterações
+        S->>IA: Envia ajustes para a IA
+        IA-->>S: Retorna nova rotina
+        S-->>U: Exibe a nova rotina
+        U->>S: Confirma e salva
+    end
